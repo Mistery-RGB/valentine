@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Be My Valentine ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #ff4b6e, #ff8fab);
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 40px 60px;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 30px;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    button {
+      border: none;
+      padding: 15px 35px;
+      font-size: 1.5rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    #yesBtn {
+      background: #fff;
+      color: #ff2d55;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.1);
+    }
+
+    #noBtn {
+      background: #333;
+      color: white;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 10s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh) rotate(0deg); }
+      to { transform: translateY(-10vh) rotate(360deg); }
+    }
+
+    .message {
+      color: white;
+      font-size: 2rem;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Will you be my Valentine? ❤️</h1>
+  <div class="buttons">
+    <button id="yesBtn">YES 💖</button>
+    <button id="noBtn">NO 😢</button>
+  </div>
+  <div class="message" id="loveMessage">Yaaay!!! I love you ❤️🥰</div>
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const message = document.getElementById("loveMessage");
+
+  let scale = 1;
+
+  noBtn.addEventListener("click", () => {
+    scale -= 0.15;
+    if (scale <= 0.2) {
+      noBtn.style.display = "none";
+    } else {
+      noBtn.style.transform = `scale(${scale})`;
+    }
+  });
+
+  yesBtn.addEventListener("click", () => {
+    message.style.display = "block";
+    document.querySelector(".buttons").style.display = "none";
+  });
+
+  // floating hearts
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    document.body.appendChild(heart);
+  }
+</script>
+
+</body>
+</html>
